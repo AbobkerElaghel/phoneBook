@@ -52,4 +52,12 @@
     Private Sub TextBox2_TextChanged_1(sender As Object, e As EventArgs)
 
     End Sub
+
+    Private Sub emailLabel_Click(sender As Object, e As EventArgs) Handles emailLabel.Click
+
+    End Sub
+
+    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles emailTextBox.TextChanged
+
+    End Sub
 End Class

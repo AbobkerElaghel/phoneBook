@@ -33,15 +33,15 @@ Partial Class SignInUpForm
         Me.Label2 = New System.Windows.Forms.Label()
         Me.firstNameLabel = New System.Windows.Forms.Label()
         Me.lastNameLabel = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.lastNameTextBox = New System.Windows.Forms.TextBox()
+        Me.phoneNumberLabel = New System.Windows.Forms.Label()
+        Me.phoneNumberTextBox = New System.Windows.Forms.TextBox()
+        Me.emailLabel = New System.Windows.Forms.Label()
+        Me.emailTextBox = New System.Windows.Forms.TextBox()
+        Me.passwordLabel = New System.Windows.Forms.Label()
+        Me.passwordTextBox = New System.Windows.Forms.TextBox()
+        Me.confirmPasswordLabel = New System.Windows.Forms.Label()
+        Me.confirmPasswordTextBox = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -155,121 +155,126 @@ Partial Class SignInUpForm
         Me.lastNameLabel.TabIndex = 14
         Me.lastNameLabel.Text = "Last Name"
         '
-        'TextBox1
+        'lastNameTextBox
         '
-        Me.TextBox1.BackColor = System.Drawing.Color.White
-        Me.TextBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
-        Me.TextBox1.Location = New System.Drawing.Point(765, 257)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(369, 27)
-        Me.TextBox1.TabIndex = 13
+        Me.lastNameTextBox.BackColor = System.Drawing.Color.White
+        Me.lastNameTextBox.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.lastNameTextBox.Location = New System.Drawing.Point(765, 257)
+        Me.lastNameTextBox.Name = "lastNameTextBox"
+        Me.lastNameTextBox.Size = New System.Drawing.Size(369, 27)
+        Me.lastNameTextBox.TabIndex = 13
         '
-        'Label3
+        'phoneNumberLabel
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(755, 329)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(91, 23)
-        Me.Label3.TabIndex = 16
-        Me.Label3.Text = "Last Name"
+        Me.phoneNumberLabel.AutoSize = True
+        Me.phoneNumberLabel.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.phoneNumberLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.phoneNumberLabel.Location = New System.Drawing.Point(755, 329)
+        Me.phoneNumberLabel.Name = "phoneNumberLabel"
+        Me.phoneNumberLabel.Size = New System.Drawing.Size(102, 23)
+        Me.phoneNumberLabel.TabIndex = 16
+        Me.phoneNumberLabel.Text = "Phone Book"
         '
-        'TextBox2
+        'phoneNumberTextBox
         '
-        Me.TextBox2.BackColor = System.Drawing.Color.White
-        Me.TextBox2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
-        Me.TextBox2.Location = New System.Drawing.Point(766, 355)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(369, 27)
-        Me.TextBox2.TabIndex = 15
+        Me.phoneNumberTextBox.BackColor = System.Drawing.Color.White
+        Me.phoneNumberTextBox.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.phoneNumberTextBox.Location = New System.Drawing.Point(766, 355)
+        Me.phoneNumberTextBox.Name = "phoneNumberTextBox"
+        Me.phoneNumberTextBox.Size = New System.Drawing.Size(369, 27)
+        Me.phoneNumberTextBox.TabIndex = 15
         '
-        'Label4
+        'emailLabel
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(755, 427)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(91, 23)
-        Me.Label4.TabIndex = 18
-        Me.Label4.Text = "Last Name"
+        Me.emailLabel.AutoSize = True
+        Me.emailLabel.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.emailLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.emailLabel.Location = New System.Drawing.Point(754, 410)
+        Me.emailLabel.Name = "emailLabel"
+        Me.emailLabel.Size = New System.Drawing.Size(51, 23)
+        Me.emailLabel.TabIndex = 18
+        Me.emailLabel.Text = "Email"
         '
-        'TextBox3
+        'emailTextBox
         '
-        Me.TextBox3.BackColor = System.Drawing.Color.White
-        Me.TextBox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
-        Me.TextBox3.Location = New System.Drawing.Point(766, 453)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(369, 27)
-        Me.TextBox3.TabIndex = 17
+        Me.emailTextBox.BackColor = System.Drawing.Color.White
+        Me.emailTextBox.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.emailTextBox.Location = New System.Drawing.Point(765, 436)
+        Me.emailTextBox.Name = "emailTextBox"
+        Me.emailTextBox.Size = New System.Drawing.Size(369, 27)
+        Me.emailTextBox.TabIndex = 17
         '
-        'Label5
+        'passwordLabel
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(755, 520)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(91, 23)
-        Me.Label5.TabIndex = 20
-        Me.Label5.Text = "Last Name"
+        Me.passwordLabel.AutoSize = True
+        Me.passwordLabel.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.passwordLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.passwordLabel.Location = New System.Drawing.Point(754, 503)
+        Me.passwordLabel.Name = "passwordLabel"
+        Me.passwordLabel.Size = New System.Drawing.Size(80, 23)
+        Me.passwordLabel.TabIndex = 20
+        Me.passwordLabel.Text = "Password"
         '
-        'TextBox4
+        'passwordTextBox
         '
-        Me.TextBox4.BackColor = System.Drawing.Color.White
-        Me.TextBox4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
-        Me.TextBox4.Location = New System.Drawing.Point(766, 546)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(369, 27)
-        Me.TextBox4.TabIndex = 19
+        Me.passwordTextBox.BackColor = System.Drawing.Color.White
+        Me.passwordTextBox.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.passwordTextBox.Location = New System.Drawing.Point(765, 529)
+        Me.passwordTextBox.Name = "passwordTextBox"
+        Me.passwordTextBox.Size = New System.Drawing.Size(369, 27)
+        Me.passwordTextBox.TabIndex = 19
         '
-        'Label6
+        'confirmPasswordLabel
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(755, 608)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(91, 23)
-        Me.Label6.TabIndex = 22
-        Me.Label6.Text = "Last Name"
+        Me.confirmPasswordLabel.AutoSize = True
+        Me.confirmPasswordLabel.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.confirmPasswordLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.confirmPasswordLabel.Location = New System.Drawing.Point(754, 591)
+        Me.confirmPasswordLabel.Name = "confirmPasswordLabel"
+        Me.confirmPasswordLabel.Size = New System.Drawing.Size(146, 23)
+        Me.confirmPasswordLabel.TabIndex = 22
+        Me.confirmPasswordLabel.Text = "Confirm Password"
         '
-        'TextBox5
+        'confirmPasswordTextBox
         '
-        Me.TextBox5.BackColor = System.Drawing.Color.White
-        Me.TextBox5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
-        Me.TextBox5.Location = New System.Drawing.Point(766, 634)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(369, 27)
-        Me.TextBox5.TabIndex = 21
+        Me.confirmPasswordTextBox.BackColor = System.Drawing.Color.White
+        Me.confirmPasswordTextBox.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.confirmPasswordTextBox.Location = New System.Drawing.Point(765, 617)
+        Me.confirmPasswordTextBox.Name = "confirmPasswordTextBox"
+        Me.confirmPasswordTextBox.Size = New System.Drawing.Size(369, 27)
+        Me.confirmPasswordTextBox.TabIndex = 21
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(885, 677)
+        Me.Button1.AutoEllipsis = True
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button1.ForeColor = System.Drawing.Color.White
+        Me.Button1.Location = New System.Drawing.Point(884, 668)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(123, 43)
         Me.Button1.TabIndex = 23
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Text = "Sign Up"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'SignInUpForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(53, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1178, 752)
+        Me.ClientSize = New System.Drawing.Size(1188, 769)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.TextBox5)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.TextBox4)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.TextBox3)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.confirmPasswordLabel)
+        Me.Controls.Add(Me.confirmPasswordTextBox)
+        Me.Controls.Add(Me.passwordLabel)
+        Me.Controls.Add(Me.passwordTextBox)
+        Me.Controls.Add(Me.emailLabel)
+        Me.Controls.Add(Me.emailTextBox)
+        Me.Controls.Add(Me.phoneNumberLabel)
+        Me.Controls.Add(Me.phoneNumberTextBox)
         Me.Controls.Add(Me.lastNameLabel)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.lastNameTextBox)
         Me.Controls.Add(Me.firstNameLabel)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.alreadyAMemberLabel)
@@ -278,7 +283,7 @@ Partial Class SignInUpForm
         Me.Controls.Add(Me.firstNameTextBox)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "SignInUpForm"
-        Me.Text = "Form1"
+        Me.Text = "Sign In"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -297,14 +302,14 @@ Partial Class SignInUpForm
     Friend WithEvents Label2 As Label
     Friend WithEvents firstNameLabel As Label
     Friend WithEvents lastNameLabel As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents lastNameTextBox As TextBox
+    Friend WithEvents phoneNumberLabel As Label
+    Friend WithEvents phoneNumberTextBox As TextBox
+    Friend WithEvents emailLabel As Label
+    Friend WithEvents emailTextBox As TextBox
+    Friend WithEvents passwordLabel As Label
+    Friend WithEvents passwordTextBox As TextBox
+    Friend WithEvents confirmPasswordLabel As Label
+    Friend WithEvents confirmPasswordTextBox As TextBox
     Friend WithEvents Button1 As Button
 End Class
