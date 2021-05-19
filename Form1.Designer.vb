@@ -30,7 +30,7 @@ Partial Class SignInUpForm
         Me.startHereLabel = New System.Windows.Forms.Label()
         Me.CreateAnAccountWithUsLabel = New System.Windows.Forms.Label()
         Me.alreadyAMemberLabel = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.logInLabel = New System.Windows.Forms.Label()
         Me.firstNameLabel = New System.Windows.Forms.Label()
         Me.lastNameLabel = New System.Windows.Forms.Label()
         Me.lastNameTextBox = New System.Windows.Forms.TextBox()
@@ -42,7 +42,8 @@ Partial Class SignInUpForm
         Me.passwordTextBox = New System.Windows.Forms.TextBox()
         Me.confirmPasswordLabel = New System.Windows.Forms.Label()
         Me.confirmPasswordTextBox = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.signUpButton = New System.Windows.Forms.Button()
+        Me.logInButton = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -121,17 +122,18 @@ Partial Class SignInUpForm
         Me.alreadyAMemberLabel.TabIndex = 10
         Me.alreadyAMemberLabel.Text = "Already a member?"
         '
-        'Label2
+        'logInLabel
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(53, Byte), Integer))
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(894, 107)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(57, 23)
-        Me.Label2.TabIndex = 11
-        Me.Label2.Text = "Log in"
+        Me.logInLabel.AutoSize = True
+        Me.logInLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(53, Byte), Integer))
+        Me.logInLabel.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.logInLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.logInLabel.Location = New System.Drawing.Point(916, 107)
+        Me.logInLabel.Margin = New System.Windows.Forms.Padding(3)
+        Me.logInLabel.Name = "logInLabel"
+        Me.logInLabel.Size = New System.Drawing.Size(57, 23)
+        Me.logInLabel.TabIndex = 11
+        Me.logInLabel.Text = "Log in"
         '
         'firstNameLabel
         '
@@ -171,9 +173,9 @@ Partial Class SignInUpForm
         Me.phoneNumberLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
         Me.phoneNumberLabel.Location = New System.Drawing.Point(755, 329)
         Me.phoneNumberLabel.Name = "phoneNumberLabel"
-        Me.phoneNumberLabel.Size = New System.Drawing.Size(102, 23)
+        Me.phoneNumberLabel.Size = New System.Drawing.Size(127, 23)
         Me.phoneNumberLabel.TabIndex = 16
-        Me.phoneNumberLabel.Text = "Phone Book"
+        Me.phoneNumberLabel.Text = "Phone Number"
         '
         'phoneNumberTextBox
         '
@@ -244,19 +246,34 @@ Partial Class SignInUpForm
         Me.confirmPasswordTextBox.Size = New System.Drawing.Size(369, 27)
         Me.confirmPasswordTextBox.TabIndex = 21
         '
-        'Button1
+        'signUpButton
         '
-        Me.Button1.AutoEllipsis = True
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(884, 668)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(123, 43)
-        Me.Button1.TabIndex = 23
-        Me.Button1.Text = "Sign Up"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.signUpButton.AutoEllipsis = True
+        Me.signUpButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.signUpButton.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.signUpButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.signUpButton.ForeColor = System.Drawing.Color.White
+        Me.signUpButton.Location = New System.Drawing.Point(884, 668)
+        Me.signUpButton.Name = "signUpButton"
+        Me.signUpButton.Size = New System.Drawing.Size(123, 43)
+        Me.signUpButton.TabIndex = 23
+        Me.signUpButton.Text = "Sign Up"
+        Me.signUpButton.UseVisualStyleBackColor = False
+        '
+        'logInButton
+        '
+        Me.logInButton.AutoEllipsis = True
+        Me.logInButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(82, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.logInButton.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.logInButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.logInButton.ForeColor = System.Drawing.Color.White
+        Me.logInButton.Location = New System.Drawing.Point(884, 480)
+        Me.logInButton.Name = "logInButton"
+        Me.logInButton.Size = New System.Drawing.Size(123, 43)
+        Me.logInButton.TabIndex = 24
+        Me.logInButton.Text = "Log in"
+        Me.logInButton.UseVisualStyleBackColor = False
+        Me.logInButton.Visible = False
         '
         'SignInUpForm
         '
@@ -264,7 +281,8 @@ Partial Class SignInUpForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(53, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1188, 769)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.logInButton)
+        Me.Controls.Add(Me.signUpButton)
         Me.Controls.Add(Me.confirmPasswordLabel)
         Me.Controls.Add(Me.confirmPasswordTextBox)
         Me.Controls.Add(Me.passwordLabel)
@@ -276,7 +294,7 @@ Partial Class SignInUpForm
         Me.Controls.Add(Me.lastNameLabel)
         Me.Controls.Add(Me.lastNameTextBox)
         Me.Controls.Add(Me.firstNameLabel)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.logInLabel)
         Me.Controls.Add(Me.alreadyAMemberLabel)
         Me.Controls.Add(Me.CreateAnAccountWithUsLabel)
         Me.Controls.Add(Me.startHereLabel)
@@ -299,7 +317,7 @@ Partial Class SignInUpForm
     Friend WithEvents startHereLabel As Label
     Friend WithEvents CreateAnAccountWithUsLabel As Label
     Friend WithEvents alreadyAMemberLabel As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents logInLabel As Label
     Friend WithEvents firstNameLabel As Label
     Friend WithEvents lastNameLabel As Label
     Friend WithEvents lastNameTextBox As TextBox
@@ -311,5 +329,6 @@ Partial Class SignInUpForm
     Friend WithEvents passwordTextBox As TextBox
     Friend WithEvents confirmPasswordLabel As Label
     Friend WithEvents confirmPasswordTextBox As TextBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents signUpButton As Button
+    Friend WithEvents logInButton As Button
 End Class
