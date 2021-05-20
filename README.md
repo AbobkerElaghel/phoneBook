@@ -7,5 +7,13 @@ Functionalities:
 
 User Registration.
 User Sign in/ Sign out.
+Password Encryption before saving to db.
 CRUD Operations on Phone Books (Create, Read, Update, Delete).
 Filiter By Property (First Name, Last Name, Phone Number).
+
+Package Manager used is nuget.org.
+
+External Libraries used are: 
+Argon2 
+MySql Client 
+Guna2 UI ket
