@@ -1,7 +1,41 @@
-﻿Public Class SignInUpForm
+﻿Imports MySql.Data.MySqlClient
+
+
+Public Class SignInUpForm
 
     Dim PrimaryColor As String = "#2A3035"
     Dim isSignUp As Boolean = True
+
+    Public Shared Sub dbConnection()
+        Dim connStr As String = "server=localhost;user=root;database=phonebook;port=3306;password=root;"
+        Dim conn As New MySqlConnection(connStr)
+        Try
+            Console.WriteLine("Connecting to MySQL...")
+            conn.Open()
+
+            Dim command As MySqlCommand = conn.CreateCommand()
+            command.CommandText = "select * from users"
+            Dim result As MySqlDataReader = command.ExecuteReader()
+
+            ' While result.Read()'
+            '  MsgBox(result.GetValue("name"))'
+            '   End While'
+
+
+
+            ' While result.HasRows()'
+            '  MsgBox(result.GetValue("name")'
+            'result.Read()
+            ' End While '
+
+
+        Catch ex As Exception
+            MsgBox(ex.ToString())
+        End Try
+        conn.Close()
+    End Sub
+
+
 
     Private Sub signInEdits()
         Me.Text = "Sign in"
@@ -58,6 +92,7 @@
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.BackColor = ColorTranslator.FromHtml(PrimaryColor)
+        'dbConnection()'
     End Sub
 
     Private Sub alreadyAMemberLabel_Click(sender As Object, e As EventArgs) Handles alreadyAMemberLabel.Click
@@ -121,6 +156,11 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles signUpButton.Click
+        Me.Hide()
+        MainForm.Activate()
+        MainForm.Show()
+
+
 
     End Sub
 End Class

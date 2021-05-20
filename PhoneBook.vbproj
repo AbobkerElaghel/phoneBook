@@ -45,6 +45,8 @@
 
   <ItemGroup>
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.1.4" />
+    <PackageReference Include="Konscious.Security.Cryptography.Argon2" Version="1.2.1" />
+    <PackageReference Include="MySql.Data" Version="8.0.25" />
   </ItemGroup>
 
 </Project>
