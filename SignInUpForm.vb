@@ -1,21 +1,67 @@
 ﻿Imports MySql.Data.MySqlClient
-
+Imports Konscious.Security.Cryptography
 
 Public Class SignInUpForm
 
-    Dim PrimaryColor As String = "#2A3035"
     Dim isSignUp As Boolean = True
+    Dim conn As New MySqlConnection()
+    Dim connectionString As String = "server=sql3.freemysqlhosting.net;user=sql3413637;database=sql3413637;port=3306;password=eEztbhiy4C;"
 
-    Public Shared Sub dbConnection()
-        Dim connStr As String = "server=localhost;user=root;database=phonebook;port=3306;password=root;"
-        Dim conn As New MySqlConnection(connStr)
+    Private Async Function createUser(firstName As String, lastName As String, phoneNumber As Integer, email As String, userPassword As String, salt As String) As Task(Of Boolean)
         Try
-            Console.WriteLine("Connecting to MySQL...")
-            conn.Open()
+            'Check if database connection is valid'
+            If Await dbConnection() Then
+                Await conn.OpenAsync()
+                Dim command As MySqlCommand = conn.CreateCommand()
 
-            Dim command As MySqlCommand = conn.CreateCommand()
-            command.CommandText = "select * from users"
-            Dim result As MySqlDataReader = command.ExecuteReader()
+                'inserting the user to the database'
+                command.CommandText = "INSERT INTO users (firstName, lastName, phoneNumber, email, userPassword,salt) VALUES ( '" & firstName & "','" & lastName & "'," & phoneNumber & ",'" & email & "','" & userPassword & "','" & salt & "');"
+                'if the rows in the database has been affected then the user is saved, return true to the calling envourment'
+                Dim numberOfRowsAffected As Integer = command.ExecuteNonQuery()
+                If numberOfRowsAffected > 0 Then
+                    Await conn.CloseAsync()
+                    Return True
+                End If
+                Await conn.CloseAsync()
+            End If
+            MsgBox("connection to database failed in createUser")
+            Await conn.CloseAsync()
+            Return False
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            conn.Close()
+        End Try
+
+    End Function
+
+    Private Async Function signIn(email As String, password As String) As Task(Of Boolean)
+        Try
+            If Await dbConnection() Then
+                Await conn.OpenAsync()
+                Dim command As MySqlCommand = conn.CreateCommand()
+                command.CommandText = ""
+
+
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Function
+    Private Function confirmPassword(str1 As String, str2 As String) As Boolean
+        Return str1 = str2
+    End Function
+
+    Public Async Function dbConnection() As Task(Of Boolean)
+        Try
+            conn.ConnectionString = connectionString
+            Console.WriteLine("Connecting to MySQL...")
+            Await conn.OpenAsync()
+            Await conn.CloseAsync()
+            Return True
+
+            ' Dim command As MySqlCommand = conn.CreateCommand()'
+            'command.CommandText = "select * from users"'
+            'Dim result As MySqlDataReader = command.ExecuteReader()'
 
             ' While result.Read()'
             '  MsgBox(result.GetValue("name"))'
@@ -26,18 +72,19 @@ Public Class SignInUpForm
             ' While result.HasRows()'
             '  MsgBox(result.GetValue("name")'
             'result.Read()
-            ' End While '
-
-
+            ' End While 
         Catch ex As Exception
             MsgBox(ex.ToString())
+            conn.Close()
+            Return False
         End Try
-        conn.Close()
-    End Sub
+
+    End Function
 
 
 
     Private Sub signInEdits()
+
         Me.Text = "Sign in"
         logInLabel.Text = "Log in"
         alreadyAMemberLabel.Text = "Already a member?"
@@ -90,9 +137,8 @@ Public Class SignInUpForm
 
     End Sub
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.BackColor = ColorTranslator.FromHtml(PrimaryColor)
-        'dbConnection()'
+    Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Await dbConnection()
     End Sub
 
     Private Sub alreadyAMemberLabel_Click(sender As Object, e As EventArgs) Handles alreadyAMemberLabel.Click
@@ -106,61 +152,43 @@ Public Class SignInUpForm
             signUpEdits()
         End If
     End Sub
+    Private Async Sub signUpButton_Click(sender As Object, e As EventArgs) Handles signUpButton.Click
+        'firstNameTextBox.Text, lastNameTextBox.Text, phoneNumberTextBox.Text, emailTextBox.Text, passwordTextBox.Text, confirmPasswordTextBox.Text'
 
-    Private Sub CreateAnAccountWithUsLabel_Click(sender As Object, e As EventArgs) Handles CreateAnAccountWithUsLabel.Click
+        Try
+            'Check of the password and the confirm password fields match'
+            If Not confirmPassword(passwordTextBox.Text, confirmPasswordTextBox.Text) Then
+                MsgBox("Passwords must match!")
+                Return
+            End If
 
-    End Sub
+            'hash the password before saving it to the database before saving it ot he database'
+            Dim salt As String = SecurityHelper.GenerateSalt(70)
+            Dim pwdHashed As String = SecurityHelper.HashPassword(passwordTextBox.Text, salt)
+            If Await createUser(firstNameTextBox.Text, lastNameTextBox.Text, phoneNumberTextBox.Text, emailTextBox.Text, pwdHashed, salt) Then
+                MsgBox("user created successfuly!")
+            End If
 
-    Private Sub phoneNumberLabel_Click(sender As Object, e As EventArgs) Handles phoneNumberLabel.Click
-
-    End Sub
-
-    Private Sub emailLabel_Click(sender As Object, e As EventArgs) Handles emailLabel.Click
-
-    End Sub
-
-    Private Sub firstNameLabel_Click(sender As Object, e As EventArgs) Handles firstNameLabel.Click
-
-    End Sub
-
-    Private Sub firstNameTextBox_TextChanged(sender As Object, e As EventArgs) Handles firstNameTextBox.TextChanged
-
-    End Sub
-
-    Private Sub lastNameLabel_Click(sender As Object, e As EventArgs) Handles lastNameLabel.Click
-
-    End Sub
-
-    Private Sub lastNameTextBox_TextChanged(sender As Object, e As EventArgs) Handles lastNameTextBox.TextChanged
+        Catch ex As InvalidCastException
+            MsgBox("Please enter a number in the phone number field!")
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
 
     End Sub
 
-    Private Sub passwordLabel_Click(sender As Object, e As EventArgs) Handles passwordLabel.Click
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+        'Try
+        '    dbConnection()
+        '    conn.Open()
+        '    Dim command As MySqlCommand = conn.CreateCommand()
+        '    command.CommandText = "INSERT INTO users (firstName, lastName, phoneNumber, email, userPassword,salt) VALUES ('abobker','elaghl',123,'qwe','qwe','qwe');"
+        '    Dim numberOfRowsAffected As Integer = command.ExecuteNonQuery()
+        '    conn.Close()
 
-    End Sub
-
-    Private Sub passwordTextBox_TextChanged(sender As Object, e As EventArgs) Handles passwordTextBox.TextChanged
-
-    End Sub
-
-    Private Sub confirmPasswordLabel_Click(sender As Object, e As EventArgs) Handles confirmPasswordLabel.Click
-
-    End Sub
-
-    Private Sub confirmPasswordTextBox_TextChanged(sender As Object, e As EventArgs) Handles confirmPasswordTextBox.TextChanged
-
-    End Sub
-
-    Private Sub logInButton_Click(sender As Object, e As EventArgs) Handles logInButton.Click
-
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles signUpButton.Click
-        Me.Hide()
-        MainForm.Activate()
-        MainForm.Show()
-
-
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        'End Try
 
     End Sub
 End Class

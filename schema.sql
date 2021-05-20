@@ -1,0 +1,27 @@
+DROP DATABASE IF EXISTS phoneBook;
+CREATE DATABASE IF NOT EXISTS phonebook;
+
+USE phoneBook;
+
+CREATE TABLE IF NOT EXISTS users(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    phoneNumber INT NOT NULL,
+    email UNIQUE VARCHAR(255) NOT NULL,
+    userPassword VARCHAR(255) NOT NULL,
+    salt VARCHAR(255) NOT NULL,
+    photoUrl VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS phonebook(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    userId INT, 
+    phoneNumber INT,
+    photoUrl VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userId) REFERENCES users(id)
+);
