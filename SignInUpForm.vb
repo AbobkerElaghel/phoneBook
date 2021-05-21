@@ -1,12 +1,12 @@
 ﻿Imports MySql.Data.MySqlClient
-Imports Konscious.Security.Cryptography
 
 Public Class SignInUpForm
 
     Dim isSignUp As Boolean = True
     Dim conn As New MySqlConnection()
+    'Database is Hosted online so it is uncoupled from the localhost and mysql does not have to installed'
     Dim connectionString As String = "server=sql3.freemysqlhosting.net;user=sql3413637;database=sql3413637;port=3306;password=eEztbhiy4C;"
-
+    Private currectUser As User
     Private Async Function createUser(firstName As String, lastName As String, phoneNumber As Integer, email As String, userPassword As String, salt As String) As Task(Of Boolean)
         Try
             'Check if database connection is valid'
@@ -34,19 +34,49 @@ Public Class SignInUpForm
 
     End Function
 
+
     Private Async Function signIn(email As String, password As String) As Task(Of Boolean)
         Try
             If Await dbConnection() Then
                 Await conn.OpenAsync()
                 Dim command As MySqlCommand = conn.CreateCommand()
-                command.CommandText = ""
+                command.CommandText = "select * from users where email = '" & email & "';"
+                Dim result As MySqlDataReader = command.ExecuteReader()
+                result.Read()
 
+                If result.HasRows() Then
+                    result.Read()
+                    Dim hashedPassword = result.GetString("userPassword")
+                    Dim salt = result.GetString("salt")
 
+                    'If password is correct then the user will be loged in'
+                    If SecurityHelper.verifyPassword(password, hashedPassword, salt) Then
+                        currectUser = New User(result.GetInt32("id"), result.GetString("firstName"), result.GetString("lastName"), result.GetString("email"), result.GetInt32("phoneNumber"))
+                        Await conn.CloseAsync()
+                        Return True
+                    Else
+                        'if not then they will have to enter the password again' 
+                        Await conn.CloseAsync()
+
+                        Return False
+                    End If
+                Else
+                    Await conn.CloseAsync()
+                    MsgBox("user does not exists in the database")
+                    Return False
+
+                End If
             End If
+            Await conn.CloseAsync()
+            Return False
         Catch ex As Exception
-
+            MsgBox(ex.Message)
+            conn.Close()
+            Return False
         End Try
     End Function
+
+
     Private Function confirmPassword(str1 As String, str2 As String) As Boolean
         Return str1 = str2
     End Function
@@ -66,9 +96,6 @@ Public Class SignInUpForm
             ' While result.Read()'
             '  MsgBox(result.GetValue("name"))'
             '   End While'
-
-
-
             ' While result.HasRows()'
             '  MsgBox(result.GetValue("name")'
             'result.Read()
@@ -81,13 +108,14 @@ Public Class SignInUpForm
 
     End Function
 
-
-
     Private Sub signInEdits()
 
         Me.Text = "Sign in"
-        logInLabel.Text = "Log in"
-        alreadyAMemberLabel.Text = "Already a member?"
+        logInLabel.Text = "Create One!"
+
+        alreadyAMemberLabel.Text = "Don't have an account?"
+
+
         CreateAnAccountWithUsLabel.Text = "Welcome"
         phoneNumberLabel.Text = "Email"
         emailLabel.Text = "Password"
@@ -105,15 +133,21 @@ Public Class SignInUpForm
         confirmPasswordLabel.Hide()
         logInButton.Show()
         signUpButton.Hide()
+
+        firstNameTextBox.Clear()
+        lastNameTextBox.Clear()
+        passwordTextBox.Clear()
+        confirmPasswordTextBox.Clear()
+        emailTextBox.Clear()
+        phoneNumberTextBox.Clear()
         isSignUp = Not isSignUp
     End Sub
 
     Private Sub signUpEdits()
         Me.Text = "Sign up"
 
-        logInLabel.Text = "Create One!"
-
-        alreadyAMemberLabel.Text = "Don't have an account?"
+        logInLabel.Text = "Log in"
+        alreadyAMemberLabel.Text = "Already a member?"
         CreateAnAccountWithUsLabel.Text = "Create an Account with us"
 
         phoneNumberLabel.Text = "Phone Number"
@@ -133,18 +167,24 @@ Public Class SignInUpForm
         confirmPasswordLabel.Show()
         logInButton.Hide()
         signUpButton.Show()
+
+
+        firstNameTextBox.Clear()
+        lastNameTextBox.Clear()
+        passwordTextBox.Clear()
+        confirmPasswordTextBox.Clear()
+        emailTextBox.Clear()
+        phoneNumberTextBox.Clear()
         isSignUp = Not isSignUp
 
     End Sub
 
     Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Await dbConnection()
+        
+
+
     End Sub
-
-    Private Sub alreadyAMemberLabel_Click(sender As Object, e As EventArgs) Handles alreadyAMemberLabel.Click
-
-    End Sub
-
     Private Sub logInLabel_Click(sender As Object, e As EventArgs) Handles logInLabel.Click
         If isSignUp Then
             signInEdits()
@@ -190,5 +230,20 @@ Public Class SignInUpForm
         '    MsgBox(ex.Message)
         'End Try
 
+    End Sub
+
+    Private Async Sub logInButton_Click(sender As Object, e As EventArgs) Handles logInButton.Click
+        Dim email = phoneNumberTextBox.Text
+        Dim password = emailTextBox.Text
+
+        If Await signIn(email, password) Then
+            MainForm.setSignInUser(currectUser)
+            MainForm.Show()
+            Me.Hide()
+        Else
+            MsgBox("password is incorrect")
+        End If
+
+        'signInEdits()
     End Sub
 End Class
